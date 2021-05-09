@@ -7,7 +7,7 @@ build/
 
 ### GRADLE ###
 gradle/
-gradlew**
+#gradlew**
 
 ### STS ###
 .apt_generated
