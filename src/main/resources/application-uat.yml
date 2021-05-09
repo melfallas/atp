@@ -1,10 +1,10 @@
 
 server:
-  port : ${PORT:9090}
+  port : ${PORT:9092}
   
 spring:
   jpa:
     properties:
       hibernate:
         hbm2ddl:
-          import_files: import-dev.sql
+          import_files: import-uat.sql
