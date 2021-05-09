@@ -1,0 +1,1 @@
+web: java -Dspring.profiles.active=ist -jar target/atp-0.0.1-SNAPSHOT.jar
