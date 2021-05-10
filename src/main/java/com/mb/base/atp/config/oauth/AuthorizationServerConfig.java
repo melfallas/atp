@@ -38,7 +38,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	private ClientRepository clientRepo;
 	
-	//private 
+	private final String SINGING_KEY = "secretKey1";
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -125,7 +125,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-//		jwtAccessTokenConverter.setSigningKey(JwtConfig.LLAVE_SECRETA);
+		jwtAccessTokenConverter.setSigningKey(SINGING_KEY);
 //		jwtAccessTokenConverter.setSigningKey(JwtConfig.RSA_PRIVADA);
 //		jwtAccessTokenConverter.setVerifierKey(JwtConfig.RSA_PUBLICA);
 		return jwtAccessTokenConverter;
