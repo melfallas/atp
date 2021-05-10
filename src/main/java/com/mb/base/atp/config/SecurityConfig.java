@@ -3,10 +3,12 @@ package com.mb.base.atp.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableGlobalMethodSecurity(securedEnabled=true)
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -36,14 +39,42 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManager();
 	}
 	
-	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.anyRequest().authenticated()
-		.and()
-		.csrf().disable()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	}
+//	@Override
+//	public void configure(HttpSecurity http) throws Exception {
+//		//http.authorizeRequests()
+//		http.requestMatchers()
+//		.antMatchers(HttpMethod.GET, "/api/test1", "/api/test3", "/actuator/health/**")
+//		//.antMatchers(HttpMethod.GET, "/api/test1", "/api/test3", "/actuator/health/**").permitAll()
+//		//.anyRequest().authenticated()
+//		.and()
+//		.csrf().disable()
+//		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//	}
+	
+//	@Override
+//	public void configure(HttpSecurity http) throws Exception {
+//		http.authorizeRequests()
+//		//.antMatchers(HttpMethod.GET, "/api/clientes", "/api/clientes/page/**", "/api/uploads/img/**", "/images/**").permitAll()
+//		.antMatchers(HttpMethod.GET, "/api/test1", "/api/test3", "/actuator/health/**").permitAll()
+//		/*.antMatchers(HttpMethod.GET, "/api/clientes/{id}").hasAnyRole("USER", "ADMIN")
+//		.antMatchers(HttpMethod.POST, "/api/clientes/upload").hasAnyRole("USER", "ADMIN")
+//		.antMatchers(HttpMethod.POST, "/api/clientes").hasRole("ADMIN")
+//		.antMatchers("/api/clientes/**").hasRole("ADMIN")*/
+//		.anyRequest().authenticated()
+//		//.and().cors()
+//		//.configurationSource(corsConfigurationSource())
+//		;
+//	}
+	
+//	@Override
+//	public void configure(HttpSecurity http) throws Exception {
+//		http.authorizeRequests()
+//		.antMatchers(HttpMethod.GET, "/api/test1", "/api/test3", "/actuator/health/**").permitAll()
+//		.anyRequest().denyAll()
+//		//.and().cors()
+//		//.configurationSource(corsConfigurationSource())
+//		;
+//	}
 
 }
 
