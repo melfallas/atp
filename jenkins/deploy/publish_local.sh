@@ -21,5 +21,5 @@ echo Ruta actual: $PWD
 #cd ../jenkins_deploy && docker-compose up -d
 #cd ~/jenkins/jenkins_deploy && docker-compose up -d
 #cd ~/jenkins_deploy && docker-compose up -d
-cd $DEPLOY_DIR && docker-compose -f docker-compose-deploy.yml up -d --no-recreate
+cd $DEPLOY_DIR && docker-compose -f docker-compose-deploy.yml up -d
 #cd /home/admin1/jenkins/jenkins_deploy && docker-compose up -d
