@@ -20,7 +20,7 @@ else
 	echo ""
 	#docker run --rm -v /root/.m2:/root/.m2 -v $appDir:/app -w /app maven:3-alpine "$mvnComand1" "$mvnComand2"
 	#docker run --rm -v /root/.m2:/root/.m2 -v $appDir:/app -w /app maven:3-alpine "$mvnComand1" "$mvnComand2" "$mvnComand3" "$mvnComand4" "$mvnComand5"
-	cd appDir
+	cd ${appDir}
 	gradlew build -x test
 fi
 
