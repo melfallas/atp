@@ -2,6 +2,8 @@
 
 # Validación de parámetros
 appDir=$1 
+#targetDir=/target
+targetDir=/build/libs
 #appDir=java-app
 if [ -z ${appDir} ]; then 
 	echo "|"
@@ -18,16 +20,16 @@ else
 	echo "Dir original permissions ${appDir}:"
 	ls -l ${appDir}
 	echo "|"
-	echo "Getting *.jar files of /target directory ..."
-	ls -l ${appDir}/target
-	#echo "Borrando adicionales de directorio ${appDir}/target..."
+	echo "Getting *.jar files of ${appDir}${targetDir} directory ..."
+	ls -l ${appDir}${targetDir}
+	#echo "Borrando adicionales de directorio ${appDir}${targetDir}..."
 	#rm -f silo-0.0.1-SNAPSHOT.jar.original
-	#ls -l ${appDir}/target
+	#ls -l ${appDir}${targetDir}
 	# Copiar el jar	
 	echo "|"
 	echo "Copy *.jar files to jenkins/build directory ..."
-	#cp -f "$appDir"/target/silo-0.0.1-SNAPSHOT.jar jenkins/build/
-	cp -f "$appDir"/target/*.jar jenkins/build/
+	#cp -f "$appDir"${targetDir}/silo-0.0.1-SNAPSHOT.jar jenkins/build/
+	cp -f "$appDir"${targetDir}/*.jar jenkins/build/
 	echo ""
 	echo "######################"
 	echo "*** Building image ***"
