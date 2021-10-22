@@ -1,19 +1,26 @@
 #!/bin/bash
 
 # Validación de parámetros
-appDir=$1 
+#appDir=$1
+appDir=$PWD
 #targetDir=/target
 targetDir=/build/libs
 #appDir=java-app
+echo "********************************"
+echo "*** Building jar with gradle ***"
+echo "********************************"
 if [ -z ${appDir} ]; then 
 	echo "|"
-	echo Debe especificar el directorio java
+	echo "Not specified directory"
 	echo "|"
 else
 	echo "|"
 	echo "Executing by user: "
 	whoami
 	/usr/bin/id
+	echo "|"
+	echo "|"
+	echo "Current directory: ${appDir}"
 	echo "|"
 	echo "Removing existing *.jar files ..."
 	echo "|"
