@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export REGISTRY="localhost:5000"
+#export REGISTRY="localhost:5000"
 export DEPLOY_DIR="/var/jenkins_home/deploy"
 
 export IMAGE=$(sed -n '1p' /tmp/.auth)
