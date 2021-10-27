@@ -29,7 +29,8 @@ echo "Domain config path: $CONFIG_PATH"
 echo "|"
 # Invoke config template
 #sh ./domain-config-template.sh $SUBDOMAIN $DOMAIN $PROXY_LOCATION > $CONFIG_PATH/$CONF_FILE_NAME
-touch $CONFIG_PATH/$CONF_FILE_NAME
+cd $CONFIG_PATH
+touch $CONF_FILE_NAME
 cat  << EOF
 server {
     listen 443 default_server;
@@ -45,7 +46,7 @@ server {
     }
 }
 EOF
-> $CONFIG_PATH/$CONF_FILE_NAME
+> $CONF_FILE_NAME
 
 echo "Domain config location stablish on: $PROXY_LOCATION"
 echo "|"
