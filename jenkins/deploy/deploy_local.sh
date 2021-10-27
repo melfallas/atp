@@ -8,8 +8,9 @@ echo ""
 
 CONTAINER_NAME=$1
 ENVIRONMENT=$2
-HOST_PORT=$3
-DOCKER_PORT=$4
+IMAGE_NAME=$3
+HOST_PORT=$4
+DOCKER_PORT=$5
 # Generamos archivo con variables
 echo $IMAGE_NAME > /tmp/.auth
 echo $BUILD_NUMBER >> /tmp/.auth
