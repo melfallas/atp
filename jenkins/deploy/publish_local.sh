@@ -17,6 +17,8 @@ export DOCKER_PORT=$(sed -n '6p' /tmp/.auth)
 echo Space establecido en $ENV
 echo Variable IMAGE establecida en $IMAGE
 echo Variable TAG establecida en $TAG
+echo Variable HOST_PORT establecida en $HOST_PORT
+echo Variable DOCKER_PORT establecida en $DOCKER_PORT
 echo Ruta actual: $PWD
 #cd ../jenkins_deploy && docker-compose up -d
 #cd ~/jenkins/jenkins_deploy && docker-compose up -d

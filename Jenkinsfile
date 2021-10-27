@@ -12,10 +12,13 @@ pipeline {
 
         stage('Build') {
             steps {
+				sh 'echo Procesing Build...'
+				/*
                 sh '''
 					./jenkins/build/mvn.sh mvn -B -DskipTests clean package $SOURCEDIR
 					./jenkins/build/build.sh $SOURCEDIR
 				'''
+				*/
             }
         }                        
         stage('Test') {

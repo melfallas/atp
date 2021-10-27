@@ -1,0 +1,7 @@
+version: '3'
+services:
+  sprinboot-microservice:
+    container_name: $CONTAINER_NAME
+    image: $IMAGE:$TAG
+    ports:
+      - "$HOST_PORT:$DOCKER_PORT"
