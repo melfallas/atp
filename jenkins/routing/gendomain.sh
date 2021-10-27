@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#export REGISTRY="localhost:5000"
-export DEPLOY_DIR="/var/jenkins_home/deploy"
-
 export IMAGE=$(sed -n '1p' /tmp/.auth)
 export TAG=$(sed -n '2p' /tmp/.auth)
 export CONTAINER_NAME=$(sed -n '3p' /tmp/.auth)
@@ -16,4 +13,42 @@ DOMAIN="mbsoftware.ml"
 PROXY_PORT=$HOST_PORT
 CONFIG_PATH="/home/admin1/docker/volumes/web/nginx/conf"
 
-sh ./generate-domain-config.sh $SUBDOMAIN $DOMAIN $PROXY_PORT $CONFIG_PATH
+#sh ./generate-domain-config.sh $SUBDOMAIN $DOMAIN $PROXY_PORT $CONFIG_PATH
+
+# Create server name string
+SERVER_NAME=$SUBDOMAIN.$DOMAIN
+PROXY_LOCATION=http://$DOMAIN:$PROXY_PORT
+CONF_FILE_NAME=$SERVER_NAME.conf
+
+echo "|"
+echo "Generating domain config for $SERVER_NAME"
+echo "|"
+echo "Domain config path: $CONFIG_PATH"
+echo "|"
+# Invoke config template
+#sh ./domain-config-template.sh $SUBDOMAIN $DOMAIN $PROXY_LOCATION > $CONFIG_PATH/$CONF_FILE_NAME
+cat  << EOF
+server {
+    listen 443 default_server;
+    listen [::]:443 default_server ipv6only=on;
+	
+    server_name $SERVER_NAME;
+	
+    ssl_certificate /etc/letsencrypt/live/$DOMAIN/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/$DOMAIN/privkey.pem;
+	
+    location / {
+        proxy_pass $LOCATION;
+    }
+}
+EOF
+> $CONFIG_PATH/$CONF_FILE_NAME
+
+echo "Domain config location stablish on: $LOCATION"
+echo "|"
+echo "Reloading proxy server"
+echo "|"
+docker-compose -f docker-compose-nginx-ssl-proxy.yml exec nginx-ssl-proxy-server nginx -s reload
+echo "|"
+echo "Finish ..."
+echo "|"
