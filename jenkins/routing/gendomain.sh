@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export ROUTING_DIR="/var/jenkins_home/workspace/pipeline-maven-test/jenkins/routing"
+
 export IMAGE=$(sed -n '1p' /tmp/.auth)
 export TAG=$(sed -n '2p' /tmp/.auth)
 export CONTAINER_NAME=$(sed -n '3p' /tmp/.auth)
@@ -48,7 +50,7 @@ echo "Domain config location stablish on: $LOCATION"
 echo "|"
 echo "Reloading proxy server"
 echo "|"
-docker-compose -f docker-compose-nginx-ssl-proxy.yml exec nginx-ssl-proxy-server nginx -s reload
+cd $ROUTING_DIR && docker-compose -f docker-compose-nginx-ssl-proxy.yml exec nginx-ssl-proxy-server nginx -s reload
 echo "|"
 echo "Finish ..."
 echo "|"
