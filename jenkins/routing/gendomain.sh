@@ -13,7 +13,7 @@ export DOCKER_PORT=$(sed -n '6p' /tmp/.auth)
 SUBDOMAIN=$CONTAINER_NAME-$ENV
 DOMAIN="mbsoftware.ml"
 PROXY_PORT=$HOST_PORT
-CONFIG_PATH="/home/admin1/docker/volumes/web/nginx/conf"
+CONFIG_PATH="/var/nginx"
 
 #sh ./generate-domain-config.sh $SUBDOMAIN $DOMAIN $PROXY_PORT $CONFIG_PATH
 
