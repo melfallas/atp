@@ -29,6 +29,7 @@ echo "Domain config path: $CONFIG_PATH"
 echo "|"
 # Invoke config template
 #sh ./domain-config-template.sh $SUBDOMAIN $DOMAIN $PROXY_LOCATION > $CONFIG_PATH/$CONF_FILE_NAME
+touch $CONFIG_PATH/$CONF_FILE_NAME
 cat  << EOF
 server {
     listen 443 default_server;
@@ -40,13 +41,13 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/$DOMAIN/privkey.pem;
 	
     location / {
-        proxy_pass $LOCATION;
+        proxy_pass $PROXY_LOCATION;
     }
 }
 EOF
 > $CONFIG_PATH/$CONF_FILE_NAME
 
-echo "Domain config location stablish on: $LOCATION"
+echo "Domain config location stablish on: $PROXY_LOCATION"
 echo "|"
 echo "Reloading proxy server"
 echo "|"
