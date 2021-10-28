@@ -29,6 +29,11 @@ echo "Domain config path: $CONFIG_PATH"
 echo "|"
 # Invoke config template
 #sh ./domain-config-template.sh $SUBDOMAIN $DOMAIN $PROXY_LOCATION > $CONFIG_PATH/$CONF_FILE_NAME
+echo "|"
+echo "Executing by user: "
+whoami
+/usr/bin/id
+echo "|"
 cd $CONFIG_PATH
 touch $CONF_FILE_NAME
 cat  << EOF
