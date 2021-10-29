@@ -29,8 +29,12 @@ whoami
 /usr/bin/id
 echo "|"
 cd $CONFIG_PATH
+echo "Changing to domain config path: $PWD"
 echo "|"
-echo "Domain config path: $PWD"
+echo "Showing directory permissions:"
+ls -l $CONFIG_PATH
+echo "|"
+echo "Creating file for domain config: $CONF_FILE_NAME"
 touch $CONF_FILE_NAME
 echo "|"
 echo "Generating domain config for $SERVER_NAME"
@@ -60,7 +64,7 @@ EOF
 echo "Domain config location stablish on: $PROXY_LOCATION"
 echo "|"
 cd $ROUTING_DIR
-echo "Changin path to routing directory: $PWD"
+echo "Changing path to routing directory: $PWD"
 echo "|"
 echo "Reloading proxy server"
 echo "|"
