@@ -13,7 +13,7 @@ export DOCKER_PORT=$(sed -n '6p' /tmp/.auth)
 SUBDOMAIN=$CONTAINER_NAME-$ENV
 DOMAIN="mbsoftware.ml"
 PROXY_PORT=$HOST_PORT
-CONFIG_PATH="/var/nginx"
+CONFIG_PATH="/var/nginx/conf"
 
 #sh ./generate-domain-config.sh $SUBDOMAIN $DOMAIN $PROXY_PORT $CONFIG_PATH
 
@@ -32,7 +32,7 @@ cd $CONFIG_PATH
 echo "Changing to domain config path: $PWD"
 echo "|"
 echo "Showing directory permissions:"
-ls -l $CONFIG_PATH
+ls -l ..
 echo "|"
 echo "Creating file for domain config: $CONF_FILE_NAME"
 touch $CONF_FILE_NAME
