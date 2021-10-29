@@ -69,7 +69,7 @@ echo "|"
 echo "Reloading proxy server"
 echo "|"
 #cd $ROUTING_DIR && docker-compose -f docker-compose-nginx-ssl-proxy.yml exec nginx-ssl-proxy-server nginx -s reload
-docker-compose -f docker-compose-nginx-ssl-proxy.yml exec nginx-ssl-proxy-server nginx -s reload
+docker-compose -f docker-compose-nginx-ssl-proxy.yml -p WebProxyServer exec nginx-ssl-proxy-server nginx -s reload
 echo "|"
 echo "Finish ..."
 echo "|"
