@@ -44,8 +44,8 @@ echo "|"
 #fi
 export DOMAIN_CONFIG_TEXT=`cat<< EOF
 server {
-    listen 443 default_server;
-    listen [::]:443 default_server ipv6only=on;
+    listen 443;
+    listen [::]:443 ipv6only=on;
 	
     server_name $SERVER_NAME;
 	
