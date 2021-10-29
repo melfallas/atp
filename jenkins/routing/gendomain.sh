@@ -22,20 +22,19 @@ SERVER_NAME=$SUBDOMAIN.$DOMAIN
 PROXY_LOCATION=http://$DOMAIN:$PROXY_PORT
 CONF_FILE_NAME=$SERVER_NAME.conf
 
-echo "|"
-echo "Generating domain config for $SERVER_NAME"
-echo "|"
-echo "Domain config path: $CONFIG_PATH"
-echo "|"
 # Invoke config template
 #sh ./domain-config-template.sh $SUBDOMAIN $DOMAIN $PROXY_LOCATION > $CONFIG_PATH/$CONF_FILE_NAME
-echo "|"
 echo "Executing by user: "
 whoami
 /usr/bin/id
 echo "|"
 cd $CONFIG_PATH
+echo "|"
+echo "Domain config path: $PWD"
 touch $CONF_FILE_NAME
+echo "|"
+echo "Generating domain config for $SERVER_NAME"
+echo "|"
 #if find / -name art  2>&1 | grep -v "Permission denied"
 #then
 #	echo "Cannot create file $CONF_FILE_NAME: Permission denied" >&2
@@ -60,10 +59,13 @@ EOF
 
 echo "Domain config location stablish on: $PROXY_LOCATION"
 echo "|"
+cd $ROUTING_DIR
+echo "Changin path to routing directory: $PWD"
+echo "|"
 echo "Reloading proxy server"
 echo "|"
 #cd $ROUTING_DIR && docker-compose -f docker-compose-nginx-ssl-proxy.yml exec nginx-ssl-proxy-server nginx -s reload
-cd $ROUTING_DIR && docker-compose -f docker-compose-nginx-ssl-proxy.yml exec nginx-ssl-proxy nginx -s reload
+docker-compose -f docker-compose-nginx-ssl-proxy.yml exec nginx-ssl-proxy-server nginx -s reload
 echo "|"
 echo "Finish ..."
 echo "|"
