@@ -36,11 +36,11 @@ whoami
 echo "|"
 cd $CONFIG_PATH
 touch $CONF_FILE_NAME
-if find / -name art  2>&1 | grep -v "Permission denied"
-then
-	echo "Cannot create file $CONF_FILE_NAME: Permission denied" >&2
-	exit 1
-fi
+#if find / -name art  2>&1 | grep -v "Permission denied"
+#then
+#	echo "Cannot create file $CONF_FILE_NAME: Permission denied" >&2
+#	exit 1
+#fi
 cat  << EOF
 server {
     listen 443 default_server;
