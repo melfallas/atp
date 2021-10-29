@@ -42,10 +42,25 @@ echo "|"
 #	echo "Cannot create file $CONF_FILE_NAME: Permission denied" >&2
 #	exit 1
 #fi
-
-# Invoke config template
-sh ./domain-config-template.sh $SUBDOMAIN $DOMAIN $PROXY_LOCATION > $CONFIG_PATH/$CONF_FILE_NAME
-
+export DOMAIN_CONFIG_TEXT=`cat<< EOF
+server {
+    listen 443 default_server;
+    listen [::]:443 default_server ipv6only=on;
+	
+    server_name $SERVER_NAME;
+	
+    ssl_certificate /etc/letsencrypt/live/$DOMAIN/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/$DOMAIN/privkey.pem;
+	
+    location / {
+        proxy_pass $PROXY_LOCATION;
+    }
+}
+EOF`
+echo "Config file text:"
+echo $DOMAIN_CONFIG_TEXT
+echo "|"
+echo $DOMAIN_CONFIG_TEXT > $CONF_FILE_NAME
 echo "Domain config location stablish on: $PROXY_LOCATION"
 echo "|"
 cd $ROUTING_DIR
