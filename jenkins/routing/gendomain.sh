@@ -42,7 +42,7 @@ echo "|"
 #	echo "Cannot create file $CONF_FILE_NAME: Permission denied" >&2
 #	exit 1
 #fi
-export DOMAIN_CONFIG_TEXT=`cat<< EOF
+export DOMAIN_CONFIG_TEXT=$(cat<< EOF
 server {
     listen 443;
     listen [::]:443 ipv6only=on;
@@ -56,11 +56,11 @@ server {
         proxy_pass $PROXY_LOCATION;
     }
 }
-EOF`
+EOF);
 echo "Config file text:"
-echo $DOMAIN_CONFIG_TEXT
+echo "$DOMAIN_CONFIG_TEXT"
 echo "|"
-echo $DOMAIN_CONFIG_TEXT > $CONF_FILE_NAME
+echo "$DOMAIN_CONFIG_TEXT" > $CONF_FILE_NAME
 echo "Domain config location stablish on: $PROXY_LOCATION"
 echo "|"
 cd $ROUTING_DIR
