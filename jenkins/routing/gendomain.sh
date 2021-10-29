@@ -22,8 +22,6 @@ SERVER_NAME=$SUBDOMAIN.$DOMAIN
 PROXY_LOCATION=http://$DOMAIN:$PROXY_PORT
 CONF_FILE_NAME=$SERVER_NAME.conf
 
-# Invoke config template
-#sh ./domain-config-template.sh $SUBDOMAIN $DOMAIN $PROXY_LOCATION > $CONFIG_PATH/$CONF_FILE_NAME
 echo "Executing by user: "
 whoami
 /usr/bin/id
@@ -44,22 +42,9 @@ echo "|"
 #	echo "Cannot create file $CONF_FILE_NAME: Permission denied" >&2
 #	exit 1
 #fi
-cat  << EOF
-server {
-    listen 443 default_server;
-    listen [::]:443 default_server ipv6only=on;
-	
-    server_name $SERVER_NAME;
-	
-    ssl_certificate /etc/letsencrypt/live/$DOMAIN/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/$DOMAIN/privkey.pem;
-	
-    location / {
-        proxy_pass $PROXY_LOCATION;
-    }
-}
-EOF
-> $CONF_FILE_NAME
+
+# Invoke config template
+sh ./domain-config-template.sh $SUBDOMAIN $DOMAIN $PROXY_LOCATION > $CONFIG_PATH/$CONF_FILE_NAME
 
 echo "Domain config location stablish on: $PROXY_LOCATION"
 echo "|"
