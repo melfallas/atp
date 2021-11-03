@@ -6,6 +6,9 @@ pipeline {
   		SOURCEDIR = '/home/admin1/jenkins/jenkins_home/workspace/pipeline-maven-test'
 		//NAME = 'APP2'
 		//ENV = 'ist'
+		withCredentials([string(credentialsId: 'DGTOKEN', variable: 'DOMAIN_API_TOKEN')]) {
+			DGTOKEN = ${DOMAIN_API_TOKEN}
+		}
     }
 
     stages {
