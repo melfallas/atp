@@ -17,11 +17,41 @@ CONFIG_PATH="/var/nginx/conf"
 
 #sh ./generate-domain-config.sh $SUBDOMAIN $DOMAIN $PROXY_PORT $CONFIG_PATH
 
+#SUBDOMAIN_PATTERM="app1-ist"
+#SUBDOMAIN_PATTERM="name:app1-ist,"
+SUBDOMAIN_PATTERM="\"name\":\"app1-ist\","
+
 # Create server name string
 SERVER_NAME=$SUBDOMAIN.$DOMAIN
 PROXY_LOCATION=http://$DOMAIN:$PROXY_PORT
-CONF_FILE_NAME=$SERVER_NAME.conf
 
+CONF_FILE_NAME=$SERVER_NAME.conf
+echo "|"
+echo "Token used: $DGTOKEN"
+echo "|"
+echo "Consulting existing domains..."
+echo "|"
+existing_domains=$(curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $DGTOKEN" \
+  "https://api.digitalocean.com/v2/domains/$DOMAIN/records?type=A&name=$SERVER_NAME"
+  )
+#  "https://api.digitalocean.com/v2/domains/mbsoftware.ml/records?type=A&name=app1-ist.mbsoftware.ml"
+  
+echo "$existing_domains"
+echo "|"
+#echo "$existing_domains" | grep $SUBDOMAIN_PATTERM
+#echo "|"
+DOMAIN_MATCH=$(echo "$existing_domains" | grep $SUBDOMAIN_PATTERM)
+#echo "Match: $DOMAIN_MATCH"
+if [ -z "$DOMAIN_MATCH" ]
+then
+      echo "Not existing domain: $SERVER_NAME"
+      echo "Creating domain by API endpoint..."
+else
+      echo "Establish existing domain: $SERVER_NAME"
+fi
+#exit 1
 echo "Executing by user: "
 whoami
 /usr/bin/id
