@@ -6,9 +6,11 @@ pipeline {
   		SOURCEDIR = '/home/admin1/jenkins/jenkins_home/workspace/pipeline-maven-test'
 		//NAME = 'APP2'
 		//ENV = 'ist'
+		/*
 		withCredentials([string(credentialsId: 'DGTOKEN', variable: 'DOMAIN_API_TOKEN')]) {
 			DGTOKEN = ${DOMAIN_API_TOKEN}
 		}
+		*/
     }
 
     stages {
@@ -39,13 +41,13 @@ pipeline {
         stage('Deploy') {
             steps {
 				//sh 'echo Procesing Push...'
-				
-				sh '''
+				withCredentials([string(credentialsId: 'DGTOKEN', variable: 'DOMAIN_API_TOKEN')]) {
+					sh '''
 					./jenkins/deploy/deploy_local.sh $CONTAINER_NAME $ENV $IMAGE_NAME $HOST_PORT $DOCKER_PORT
 					./jenkins/deploy/publish_local.sh
-					./jenkins/routing/gendomain.sh $DGTOKEN
-				'''
-				
+					./jenkins/routing/gendomain.sh ${DOMAIN_API_TOKEN}
+					'''
+				}				
             }
         }
     }
