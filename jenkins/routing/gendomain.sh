@@ -2,6 +2,8 @@
 
 export ROUTING_DIR="/var/jenkins_home/workspace/pipeline-maven-test/jenkins/routing"
 
+DGTOKEN=$1
+
 export IMAGE=$(sed -n '1p' /tmp/.auth)
 export TAG=$(sed -n '2p' /tmp/.auth)
 export CONTAINER_NAME=$(sed -n '3p' /tmp/.auth)
@@ -52,6 +54,7 @@ else
       echo "Establish existing domain: $SERVER_NAME"
 fi
 #exit 1
+echo "|"
 echo "Executing by user: "
 whoami
 /usr/bin/id
