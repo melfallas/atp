@@ -5,3 +5,5 @@ services:
     image: $IMAGE:$TAG
     ports:
       - "$HOST_PORT:$DOCKER_PORT"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=$ENV"

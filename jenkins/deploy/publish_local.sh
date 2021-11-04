@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #export REGISTRY="localhost:5000"
-export DEPLOY_DIR="/var/jenkins_home/deploy"
+export DEPLOY_DIR="/var/jenkins_home/workspace/pipeline-maven-test/jenkins/deploy"
 
 export IMAGE=$(sed -n '1p' /tmp/.auth)
 export TAG=$(sed -n '2p' /tmp/.auth)
