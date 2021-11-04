@@ -61,7 +61,7 @@ if [ -z "$DOMAIN_RECORD" ]
 then
     echo "Not existing domain: $SERVER_NAME"
     echo "Creating domain by API endpoint..."
-	CREATE_DOMAIN_RESULT=$(curl -X POST \
+	CREATE_DOMAIN_RESULT=$(echo -X POST \
 	  -H "Content-Type: application/json" \
 	  -H "Authorization: Bearer $DNS_API_TOKEN" \
 	  -d '{"type":"A","name":"$SUBDOMAIN","data":"$SERVER_IP","priority":null,"port":null,"ttl":1800,"weight":null,"flags":null,"tag":null}' \
@@ -72,7 +72,6 @@ then
 	echo "---"
 	echo "$CREATE_DOMAIN_RESULT"
 	echo "---"
-	echo "|"
 else
       echo "Domain alredy existing: $SERVER_NAME"
 	  echo "No additional operations needed..."
