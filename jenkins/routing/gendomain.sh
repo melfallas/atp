@@ -64,7 +64,7 @@ then
 	CREATE_DOMAIN_RESULT=$(echo -X POST \
 	  -H "Content-Type: application/json" \
 	  -H "Authorization: Bearer $DNS_API_TOKEN" \
-	  -d '{"type":"A","name":"$SUBDOMAIN","data":"$SERVER_IP","priority":null,"port":null,"ttl":1800,"weight":null,"flags":null,"tag":null}' \
+	  -d "{\"type\":\"A\",\"name\":\"$SUBDOMAIN\",\"data\":\"$SERVER_IP\",\"priority\":null,\"port\":null,\"ttl\":1800,\"weight\":null,\"flags\":null,\"tag\":null}" \
 	  "https://api.digitalocean.com/v2/domains/$DOMAIN/records"
 	  )
 	echo "|"
