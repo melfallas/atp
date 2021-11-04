@@ -27,7 +27,7 @@ CONFIG_PATH="/var/nginx/conf"
 # Create needed string variables
 SERVER_NAME=$SUBDOMAIN.$DOMAIN
 PROXY_LOCATION=http://$DOMAIN:$PROXY_PORT
-SUBDOMAIN_PATTERM="\"name\":\"app1-ist\","
+SUBDOMAIN_PATTERM="\"name\":\"app0-ist\","
 CONF_FILE_NAME=$SERVER_NAME.conf
 
 echo ""
@@ -61,7 +61,7 @@ if [ -z "$DOMAIN_RECORD" ]
 then
     echo "Not existing domain: $SERVER_NAME"
     echo "Creating domain by API endpoint..."
-	CREATE_DOMAIN_RESULT=$(echo -X POST \
+	CREATE_DOMAIN_RESULT=$(curl -X POST \
 	  -H "Content-Type: application/json" \
 	  -H "Authorization: Bearer $DNS_API_TOKEN" \
 	  -d "{\"type\":\"A\",\"name\":\"$SUBDOMAIN\",\"data\":\"$SERVER_IP\",\"priority\":null,\"port\":null,\"ttl\":1800,\"weight\":null,\"flags\":null,\"tag\":null}" \
@@ -107,7 +107,6 @@ echo "|"
 export DOMAIN_CONFIG_TEXT=$(cat<< EOF
 server {
     listen 443;
-    listen [::]:443 ipv6only=on;
 	
     server_name $SERVER_NAME;
 	
@@ -120,7 +119,9 @@ server {
 }
 EOF);
 echo "Config file text:"
+echo "---"
 echo "$DOMAIN_CONFIG_TEXT"
+echo "---"
 echo "|"
 echo "$DOMAIN_CONFIG_TEXT" > $CONF_FILE_NAME
 echo "Domain config location stablish on: $PROXY_LOCATION"
