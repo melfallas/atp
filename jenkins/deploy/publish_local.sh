@@ -3,15 +3,18 @@
 #export REGISTRY="localhost:5000"
 export DEPLOY_DIR="/var/jenkins_home/workspace/pipeline-maven-test/jenkins/deploy"
 
-export IMAGE=$(sed -n '1p' /tmp/.auth)
+export IMAGE_PARAM=$(sed -n '1p' /tmp/.auth)
 export TAG=$(sed -n '2p' /tmp/.auth)
-export CONTAINER_NAME=$(sed -n '3p' /tmp/.auth)
+export APP_NAME=$(sed -n '3p' /tmp/.auth)
 export ENV=$(sed -n '4p' /tmp/.auth)
 export HOST_PORT=$(sed -n '5p' /tmp/.auth)
 export DOCKER_PORT=$(sed -n '6p' /tmp/.auth)
 
+export IMAGE=$APP_NAME
+export CONTAINER_NAME=$APP_NAME-$ENV
+
 # Default constanst
-PROJECT_NAME=$CONTAINER_NAME-$ENV
+PROJECT_NAME=$APP_NAME-$ENV
 
 #export IMAGE=$(sed -n '1p' /var/jenkins_home/jenkins_deploy/.appvar)
 #export TAG=$(sed -n '2p' /var/jenkins_home/jenkins_deploy/.appvar)
