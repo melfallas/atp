@@ -27,7 +27,7 @@ CONFIG_PATH="/var/nginx/conf"
 # Create needed string variables
 SERVER_NAME=$SUBDOMAIN.$DOMAIN
 PROXY_LOCATION=http://$DOMAIN:$PROXY_PORT
-SUBDOMAIN_PATTERM="\"name\":\"app0-ist\","
+SUBDOMAIN_PATTERM="\"name\":\"$SUBDOMAIN\","
 CONF_FILE_NAME=$SERVER_NAME.conf
 
 echo ""
@@ -117,7 +117,8 @@ server {
         proxy_pass $PROXY_LOCATION;
     }
 }
-EOF);
+EOF
+);
 echo "Config file text:"
 echo "---"
 echo "$DOMAIN_CONFIG_TEXT"
