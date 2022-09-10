@@ -45,7 +45,6 @@ pipeline {
 					sh '''
 					./jenkins/deploy/deploy_local.sh $CONTAINER_NAME $ENV $IMAGE_NAME $HOST_PORT $DOCKER_PORT
 					./jenkins/deploy/publish_local.sh
-					./jenkins/routing/gendomain.sh ${DOMAIN_API_TOKEN}
 					'''
 				}				
             }
