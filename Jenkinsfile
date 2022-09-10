@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-  		SOURCEDIR = '/home/admin1/jenkins/jenkins_home/workspace/$JOB_NAME'
+  		SOURCEDIR = '/home/admin1/jenkins/jenkins_home/workspace'
 		//NAME = 'APP2'
 		//ENV = 'ist'
 		/*
@@ -20,8 +20,8 @@ pipeline {
 				//sh 'echo Procesing Build...'
 				
                 sh '''
-					./jenkins/build/mvn.sh mvn -B -DskipTests clean package $SOURCEDIR
-					./jenkins/build/build.sh $SOURCEDIR
+					./jenkins/build/mvn.sh mvn -B -DskipTests clean package ${SOURCEDIR}/${JOB_NAME}
+					./jenkins/build/build.sh ${SOURCEDIR}/${JOB_NAME}
 				'''
 				
             }
@@ -29,7 +29,7 @@ pipeline {
         stage('Test') {
             steps {
 				sh 'echo Procesing Test...'
-				//sh './jenkins/test/test.sh mvn test $SOURCEDIR'
+				//sh './jenkins/test/test.sh mvn test ${SOURCEDIR}/${JOB_NAME}'
             }
         }
         stage('Push') {
