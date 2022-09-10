@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-  		SOURCEDIR = '/home/admin1/jenkins/jenkins_home/workspace/pipeline-maven-test'
+  		SOURCEDIR = '/home/admin1/jenkins/jenkins_home/workspace/$JOB_NAME'
 		//NAME = 'APP2'
 		//ENV = 'ist'
 		/*
