@@ -22,7 +22,7 @@ pipeline {
                 script{
                     SOURCEDIR = '/home/linux_user/jenkins/jenkins_home/workspace'
                 }
-            }                
+            }
         }
         stage('Build') {
             steps {
