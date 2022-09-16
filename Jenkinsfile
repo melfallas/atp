@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-  		SOURCEDIR = '/home/admin1/jenkins/jenkins_home/workspace'
+  		SOURCEDIR = '/home/ubuntu/jenkins/jenkins_home/workspace'
 		//NAME = 'APP2'
 		//ENV = 'ist'
 		/*
