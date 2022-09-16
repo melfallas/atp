@@ -1,3 +1,5 @@
+def SOURCEDIR
+
 pipeline {
 
     agent any
@@ -20,7 +22,7 @@ pipeline {
             // Each stage is made up of steps
             steps{
                 script{
-                    SOURCEDIR = '/home/linux_user/jenkins/jenkins_home/workspace'
+                    SOURCEDIR = '/home/userX/jenkins/jenkins_home/workspace/${JOB_NAME}'
                 }
             }
         }
@@ -29,8 +31,8 @@ pipeline {
 				//sh 'echo Procesing Build...'
 				
                 sh """
-					./jenkins/build/mvn.sh mvn -B -DskipTests clean package ${SOURCEDIR}/${JOB_NAME}
-					./jenkins/build/build.sh ${SOURCEDIR}/${JOB_NAME}
+					./jenkins/build/mvn.sh mvn -B -DskipTests clean package ${SOURCEDIR}
+					./jenkins/build/build.sh ${SOURCEDIR}
 				"""
 				
             }
@@ -38,7 +40,7 @@ pipeline {
         stage('Test') {
             steps {
 				sh 'echo Procesing Test...'
-				//sh './jenkins/test/test.sh mvn test ${SOURCEDIR}/${JOB_NAME}'
+				//sh './jenkins/test/test.sh mvn test ${SOURCEDIR}'
             }
         }
         stage('Push') {
