@@ -1,3 +1,5 @@
+def SOURCEDIR
+
 pipeline {
 
     agent any
