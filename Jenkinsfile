@@ -1,11 +1,14 @@
+def SOURCEDIR = "/home/$CONTAINER_NAME/jenkins/jenkins_home/workspace"
+
 pipeline {
 
     agent any
 
     environment {
-  		SOURCEDIR = '/home/ubuntu/jenkins/jenkins_home/workspace'
+  		//SOURCEDIR = '/home/ubuntu/jenkins/jenkins_home/workspace'
 		//NAME = 'APP2'
 		//ENV = 'ist'
+		TEST='test'
 		/*
 		withCredentials([string(credentialsId: 'DGTOKEN', variable: 'DOMAIN_API_TOKEN')]) {
 			DGTOKEN = ${DOMAIN_API_TOKEN}
