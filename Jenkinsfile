@@ -22,16 +22,16 @@ pipeline {
                 script{
                     SOURCEDIR = '/home/linux_user/jenkins/jenkins_home/workspace'
                 }
-            }                
+            }
         }
         stage('Build') {
             steps {
 				//sh 'echo Procesing Build...'
 				
-                sh '''
+                sh """
 					./jenkins/build/mvn.sh mvn -B -DskipTests clean package ${SOURCEDIR}/${JOB_NAME}
 					./jenkins/build/build.sh ${SOURCEDIR}/${JOB_NAME}
-				'''
+				"""
 				
             }
         }                        
