@@ -1,5 +1,3 @@
-def SOURCEDIR = "/home/linux_user/jenkins/jenkins_home/workspace"
-
 pipeline {
 
     agent any
@@ -18,7 +16,14 @@ pipeline {
     }
 
     stages {
-
+		stage('Initialize') {
+            // Each stage is made up of steps
+            steps{
+                script{
+                    SOURCEDIR = '/home/linux_user/jenkins/jenkins_home/workspace'
+                }
+            }                
+        }
         stage('Build') {
             steps {
 				//sh 'echo Procesing Build...'
