@@ -1,4 +1,4 @@
-def SOURCEDIR = '/home/userX/jenkins/jenkins_home/workspace/${JOB_NAME}'
+def SOURCEDIR = '/home/$CONTAINER_NAME/jenkins/jenkins_home/workspace/${JOB_NAME}'
 
 pipeline {
 
