@@ -1,4 +1,4 @@
-def SOURCEDIR = '/home/$LINUX_USER/jenkins/jenkins_home/workspace/${JOB_NAME}'
+def SOURCEDIR = '/home/$LINUX_USER/jenkins/jenkins_home/workspace/${JOB_NAME}' 
 
 pipeline {
 
@@ -9,7 +9,7 @@ pipeline {
 		//NAME = 'APP2'
 		//ENV = 'ist'
 		TEST='test'
-		TEST1='test'
+		//TEST1='test'
 		/*
 		withCredentials([string(credentialsId: 'DGTOKEN', variable: 'DOMAIN_API_TOKEN')]) {
 			DGTOKEN = ${DOMAIN_API_TOKEN}
