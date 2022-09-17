@@ -1,4 +1,4 @@
-def SOURCEDIR
+def SOURCEDIR = '/home/userX/jenkins/jenkins_home/workspace/${JOB_NAME}'
 
 pipeline {
 
@@ -18,14 +18,6 @@ pipeline {
     }
 
     stages {
-		stage('Initialize') {
-            // Each stage is made up of steps
-            steps{
-                script{
-                    SOURCEDIR = '/home/userX/jenkins/jenkins_home/workspace/${JOB_NAME}'
-                }
-            }
-        }
         stage('Build') {
             steps {
 				//sh 'echo Procesing Build...'
