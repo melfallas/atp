@@ -27,6 +27,10 @@ echo Setting DOCKER_PORT value: $DOCKER_PORT
 echo Setting LINUX_USER value: $LINUX_USER
 echo Setting JOB_NAME value: $JOB_NAME
 
+export AUTOMATIC_PORT = $(($HOST_PORT + $TAG))
+
+echo Setting automatic port: $AUTOMATIC_PORT
+
 echo Current Directory: $PWD
 echo Deploy Directory: $DEPLOY_DIR
 

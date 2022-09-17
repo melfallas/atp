@@ -4,6 +4,6 @@ services:
     container_name: $CONTAINER_NAME
     image: $IMAGE:$TAG
     ports:
-      - "$HOST_PORT:$DOCKER_PORT"
+      - "$AUTOMATIC_PORT:$DOCKER_PORT"
     environment:
       - "SPRING_PROFILES_ACTIVE=$ENV"
