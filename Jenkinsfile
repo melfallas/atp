@@ -22,7 +22,7 @@ pipeline {
             // Each stage is made up of steps
             steps{
                 script{
-                    SOURCEDIR = '/home/userX/jenkins/jenkins_home/workspace/${JOB_NAME}'
+                    SOURCEDIR = '/home/userU/jenkins/jenkins_home/workspace/${JOB_NAME}'
                 }
             }
         }
