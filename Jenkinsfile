@@ -51,7 +51,7 @@ pipeline {
 				/*
 				withCredentials([string(credentialsId: 'DGTOKEN', variable: 'DOMAIN_API_TOKEN')]) {
 					sh '''
-					./jenkins/deploy/deploy_local.sh $CONTAINER_NAME $ENV $IMAGE_NAME $HOST_PORT $DOCKER_PORT
+					./jenkins/deploy/deploy_local.sh $CONTAINER_NAME $ENV $IMAGE_NAME $HOST_PORT $DOCKER_PORT $LINUX_USER ${JOB_NAME}
 					./jenkins/deploy/publish_local.sh
 					'''
 				}
