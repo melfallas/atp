@@ -45,7 +45,7 @@ pipeline {
             steps {
 				//sh 'echo Procesing Push...'
 				sh '''
-				./jenkins/deploy/deploy_local.sh $CONTAINER_NAME $ENV $IMAGE_NAME $HOST_PORT $DOCKER_PORT
+				./jenkins/deploy/deploy_local.sh $CONTAINER_NAME $ENV $IMAGE_NAME $HOST_PORT $DOCKER_PORT $LINUX_USER $JOB_NAME
 				./jenkins/deploy/publish_local.sh
 				'''
 				/*
